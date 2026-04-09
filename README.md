@@ -38,5 +38,6 @@
 ### 📁src/java/dal
 
 | **File** | **Mô tả** |
+|----------|-----------|
 | CategoryDAO.java | file lấy dữ liệu catagory từ db ra |
 | ProductDAO.java | file lấy dữ liệu từ product từ db ra |
