@@ -14,12 +14,14 @@
 ### 📁web/style
 
 | **File** | **Mô tả** |
+|----------|-----------|
 | style.css | css hiện đang dùng cho HomePage.jsp và Products.jsp |
 | LoginStyle.css | css dùng cho Login.jsp và Register.jsp nhưng chưa làm xong |
 
 ### 📁src/java/Controller
 
 | **File** | **Mô tả** |
+|----------|-----------|
 | DBConnect.java | java class kết nối db bằng mysql |
 | LoginController.java | servlet để login chuyển hướng qua homepage và register |
 | LogoutController.java | servlet log out tài khoản, xóa session |
@@ -29,6 +31,7 @@
 ### 📁src/java/Model
 
 | **File** | **Mô tả** |
+|----------|-----------|
 | Category.java | model java class các loại sản phẩm để thực hiện lọc sản phẩm trong Product.jsp |
 | Product.java | model java class các sản phẩm lấy từ db ra hiển thị trong Product.jsp |
 
