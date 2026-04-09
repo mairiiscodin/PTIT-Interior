@@ -5,6 +5,7 @@
 ### 📁web
 
 | **File** | **Mô tả** |
+|----------|-----------|
 | HomePage.jsp | Jsp trang chủ |
 | Products.jsp | Jsp trang sản phẩm |
 | Login.jsp | Jsp trang đăng nhập |
