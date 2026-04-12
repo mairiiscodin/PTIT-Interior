@@ -50,8 +50,12 @@ public class LoginController extends HttpServlet {
             if (rs.next()) {
                 HttpSession session = request.getSession();
                 session.setAttribute("full_name", fullName);
-
-                response.sendRedirect("HomePage.jsp");
+                if(fullName.equals("admin") && password.equals("123456")){
+                    response.sendRedirect("admin/dashboard");
+                }
+                else{
+                    response.sendRedirect("HomePage.jsp");
+                }
             } else {
                 request.setAttribute("error", "Sai tên đăng nhập hoặc mật khẩu!");
                 request.getRequestDispatcher("Login.jsp").forward(request, response);

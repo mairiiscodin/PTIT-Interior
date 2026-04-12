@@ -5,10 +5,11 @@
         <group>
             <file>file:/D:/o%20E/codecacthu/PTITInterior/web/HomePage.jsp</file>
             <file>file:/D:/o%20E/codecacthu/PTITInterior/web/Products.jsp</file>
+            <file>file:/D:/o%20E/codecacthu/PTITInterior/web/style/style.css</file>
+            <file>file:/D:/o%20E/codecacthu/PTITInterior/web/Login.jsp</file>
+            <file>file:/D:/o%20E/codecacthu/PTITInterior/web/style/LoginStyle.css</file>
             <file>file:/D:/o%20E/codecacthu/PTITInterior/src/java/Controller/ProductsController.java</file>
             <file>file:/D:/o%20E/codecacthu/PTITInterior/src/java/dal/ProductDAO.java</file>
-            <file>file:/D:/o%20E/codecacthu/PTITInterior/src/java/Model/Category.java</file>
-            <file>file:/D:/o%20E/codecacthu/PTITInterior/src/java/dal/CategoryDAO.java</file>
         </group>
     </open-files>
 </project-private>

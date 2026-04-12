@@ -31,7 +31,7 @@
                 <%
                     } else {
                 %>
-                    <span>Xin chào, <strong><%= userName %></strong></span>
+                    <span>Xin chào, <strong><a href="${pageContext.request.contextPath}/account"><%= userName %></a></strong></span>
                     <span>|</span>
                     <a href="${pageContext.request.contextPath}/LogoutController">Đăng xuất</a>
                 <%
@@ -82,15 +82,20 @@
             <div class="product-container">
                 <c:forEach var="p" items="${list}">
                     <div class="product-card">
-                        <img src="${pageContext.request.contextPath}/images/${p.urlImage}" alt="${p.name}">
-                        <h3>${p.name}</h3>
-                        <p>${p.price} VNĐ</p>
-                        <a href="${pageContext.request.contextPath}/ProductDetailController?id=${p.id}" class="view-detail">
-                            Xem chi tiết
-                        </a>
+                        <div class="product-image-wrapper">
+                            <img src="${pageContext.request.contextPath}/image/${p.urlImage}" alt="${p.name}">
+                        </div>
+
+                        <div class="product-info">
+                            <h3>${p.name}</h3>
+                            <p>${p.price} VNĐ</p>
+                            <a href="${pageContext.request.contextPath}/ProductDetailController?id=${p.id}" class="view-detail">
+                                Xem chi tiết
+                            </a>
+                        </div>
                     </div>
                 </c:forEach>
-                
+
                 <c:if test="${empty list}">
                     <div style="grid-column: 1/-1; text-align: center; padding: 100px 0;">
                         <p>Không tìm thấy sản phẩm phù hợp.</p>

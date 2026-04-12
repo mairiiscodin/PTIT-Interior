@@ -30,7 +30,7 @@
                 <%
                     } else {
                 %>
-                    <span>Xin chào, <strong><%= userName %></strong></span>
+                    <span>Xin chào, <strong><a href="${pageContext.request.contextPath}/account"><%= userName %></a></strong></span>
                     <span>|</span>
                     <a href="${pageContext.request.contextPath}/LogoutController">Đăng xuất</a>
                 <%
