@@ -10,20 +10,21 @@
 | Products.jsp | Jsp trang sản phẩm |
 | Login.jsp | Jsp trang đăng nhập |
 | Register.jsp | Jsp trang đăng ký |
+| Description.jsp | Jsp trang mô tả brand |
 
 ### 📁web/style
 
 | **File** | **Mô tả** |
 |----------|-----------|
-| style.css | css hiện đang dùng cho HomePage.jsp và Products.jsp |
-| LoginStyle.css | css dùng cho Login.jsp và Register.jsp nhưng chưa làm xong |
+| style.css | css hiện đang dùng chung cho các trang có topbar |
+| LoginStyle.css | css dùng cho Login.jsp và Register.jsp |
 
 ### 📁src/java/Controller
 
 | **File** | **Mô tả** |
 |----------|-----------|
 | DBConnect.java | java class kết nối db bằng mysql |
-| LoginController.java | servlet để login chuyển hướng qua homepage và register |
+| LoginController.java | servlet để login chuyển hướng qua homepage, admin và register |
 | LogoutController.java | servlet log out tài khoản, xóa session |
 | ProductController.java | servlet lấy product từ db và thực hiện lọc theo yêu cầu, hiện dữ liệu ra Product.jsp |
 | RegisterController.java | servlet lấy dữ liệu từ register.jsp lưu vào db để đăng kí |
