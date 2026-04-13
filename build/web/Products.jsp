@@ -10,7 +10,7 @@
 <html lang="vi">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Sản Phẩm - PTIT Interior</title>
+        <title>PTIT Interior - Không Gian Sống Tinh Tế</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <link rel="preconnect" href="https://fonts.googleapis.com">

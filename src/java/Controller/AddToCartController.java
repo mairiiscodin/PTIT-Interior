@@ -4,11 +4,9 @@
  */
 package Controller;
 
+import dal.CartDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -20,8 +18,8 @@ import jakarta.servlet.http.HttpSession;
  *
  * @author Laptop
  */
-@WebServlet(name = "login", urlPatterns = {"/login"})
-public class LoginController extends HttpServlet {
+@WebServlet(name = "AddToCartController", urlPatterns = {"/AddToCartController"})
+public class AddToCartController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,43 +32,38 @@ public class LoginController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String fullName = request.getParameter("full_name");
-        String password = request.getParameter("password");
+        HttpSession session = request.getSession();
+        // Lấy userId từ session (bạn cần set user_id này lúc Login success)
+        Integer userId = (Integer) session.getAttribute("user_id");
+
+        if (userId == null) {
+            // Nếu chưa đăng nhập, chuyển hướng đến trang Login
+            response.sendRedirect("Login.jsp");
+            return;
+        }
+
         try {
-            Connection conn = DBConnect.getConnection();
+            int productId = Integer.parseInt(request.getParameter("productId"));
+            int quantity = Integer.parseInt(request.getParameter("quantity"));
 
-            String sql = "SELECT * FROM users WHERE full_name=? AND password=?";
-
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, fullName);
-            ps.setString(2, password);
-
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                HttpSession session = request.getSession();
-                
-                int userId = rs.getInt("id"); 
-                session.setAttribute("user_id", userId);
-                
-                session.setAttribute("full_name", fullName);
-                if(fullName.equals("admin") && password.equals("123456")){
-                    response.sendRedirect("admin/dashboard");
-                }
-                else{
-                    response.sendRedirect("HomePage.jsp");
-                }
-            } else {
-                request.setAttribute("error", "Sai tên đăng nhập hoặc mật khẩu!");
-                request.getRequestDispatcher("Login.jsp").forward(request, response);
+            CartDAO cartDAO = new CartDAO();
+            
+            // 1. Lấy hoặc tạo giỏ hàng
+            int cartId = cartDAO.getCartIdByUserId(userId);
+            
+            // 2. Thêm sản phẩm vào giỏ
+            if (cartId != -1) {
+                cartDAO.addToCart(cartId, productId, quantity);
             }
 
-            conn.close();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                response.getWriter().println("Lỗi: " + e.getMessage());
-            }
+            // 3. Sau khi thêm thành công, chuyển hướng về trang giỏ hàng hoặc trang sản phẩm
+            response.sendRedirect("Cart.jsp");
+            // Có thể đổi cho phù hợp với module giỏ hàng
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendRedirect("error.jsp");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

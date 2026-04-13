@@ -6,22 +6,20 @@ package Controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import dal.ProductDAO;
+import Model.Product;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 /**
  *
  * @author Laptop
  */
-@WebServlet(name = "login", urlPatterns = {"/login"})
-public class LoginController extends HttpServlet {
+@WebServlet(name = "ProductDetailController", urlPatterns = {"/ProductDetailController"})
+public class ProductDetailController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,43 +32,13 @@ public class LoginController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String fullName = request.getParameter("full_name");
-        String password = request.getParameter("password");
-        try {
-            Connection conn = DBConnect.getConnection();
+        response.setContentType("text/html;charset=UTF-8");
+            String id = request.getParameter("id");
+            ProductDAO dao = new ProductDAO();
+            Product p = dao.getProductByID(id);
 
-            String sql = "SELECT * FROM users WHERE full_name=? AND password=?";
-
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, fullName);
-            ps.setString(2, password);
-
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                HttpSession session = request.getSession();
-                
-                int userId = rs.getInt("id"); 
-                session.setAttribute("user_id", userId);
-                
-                session.setAttribute("full_name", fullName);
-                if(fullName.equals("admin") && password.equals("123456")){
-                    response.sendRedirect("admin/dashboard");
-                }
-                else{
-                    response.sendRedirect("HomePage.jsp");
-                }
-            } else {
-                request.setAttribute("error", "Sai tên đăng nhập hoặc mật khẩu!");
-                request.getRequestDispatcher("Login.jsp").forward(request, response);
-            }
-
-            conn.close();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                response.getWriter().println("Lỗi: " + e.getMessage());
-            }
+            request.setAttribute("detail", p);
+            request.getRequestDispatcher("ProductDetail.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

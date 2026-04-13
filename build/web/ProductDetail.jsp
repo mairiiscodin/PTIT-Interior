@@ -1,13 +1,12 @@
 <%-- 
-    Document   : Products
-    Created on : Mar 26, 2026, 4:07:30 PM
+    Document   : ProductDetail
+    Created on : Apr 12, 2026, 3:02:53 PM
     Author     : Laptop
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="vi">
+<html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>PTIT Interior - Không Gian Sống Tinh Tế</title>
@@ -20,7 +19,6 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/style/style.css">
     </head>
     <body>
-        
         <header>
             <div class="top-bar">
                 <%
@@ -52,58 +50,35 @@
                 </nav>
             </div>
         </header>
+        <main class="product-detail-container">
+            <div class="detail-wrapper">
+                <div class="detail-left">
+                    <img src="${pageContext.request.contextPath}/image/${detail.urlImage}" alt="${detail.name}">
+                </div>
 
-        <main>
-            <div class="page-header">
-                <h1>Bộ Sưu Tập</h1>
-            </div>
-
-            <div class="filter-container">
-                <form action="ProductsController" method="get" class="search-box">
-                    <input type="text" name="keyword" placeholder="Tìm tên sản phẩm...">
-                    <select name="sort">
-                        <option value="asc">Giá thấp đến cao</option>
-                        <option value="desc">Giá cao đến thấp</option>
-                    </select>
-                    <button type="submit">Tìm</button>
-                </form>
-
-                <div class="productCatalog">
-                    <a href="ProductsController" class="${empty param.category ? 'active' : ''}">Tất cả sản phẩm</a>
-                    <c:forEach var="c" items="${categories}">
-                        <a href="ProductsController?category=${c.id}" 
-                           class="${param.category == c.id ? 'active' : ''}">
-                           ${c.name}
-                        </a>
-                    </c:forEach>
+                <div class="detail-right">
+                    <nav class="breadcrumb">
+                        <a href="ProductsController">Sản phẩm</a> / ${detail.name}
+                    </nav>
+                    <h1>${detail.name}</h1>
+                    <p class="price">${detail.price} VNĐ</p>
+                    <div class="description">
+                        <p>${detail.description}</p>
+                    </div>
+                    
+                    <form action="AddToCartController" method="post">
+                        <input type="hidden" name="productId" value="${detail.id}">
+                        <div class="quantity-select">
+                            <label>Số lượng:</label>
+                            <input type="number" name="quantity" value="1" min="1" max="${detail.stock}">
+                        </div>
+                        <button type="submit" class="btn-add-cart">Thêm vào giỏ hàng</button>
+                    </form>
+                    
+                    <p class="stock-status">Kho: ${detail.stock} sản phẩm có sẵn</p>
                 </div>
             </div>
-
-            <div class="product-container">
-                <c:forEach var="p" items="${list}">
-                    <div class="product-card">
-                        <div class="product-image-wrapper">
-                            <img src="${pageContext.request.contextPath}/image/${p.urlImage}" alt="${p.name}">
-                        </div>
-
-                        <div class="product-info">
-                            <h3>${p.name}</h3>
-                            <p>${p.price} VNĐ</p>
-                            <a href="${pageContext.request.contextPath}/ProductDetailController?id=${p.id}" class="view-detail">
-                                Xem chi tiết
-                            </a>
-                        </div>
-                    </div>
-                </c:forEach>
-
-                <c:if test="${empty list}">
-                    <div style="grid-column: 1/-1; text-align: center; padding: 100px 0;">
-                        <p>Không tìm thấy sản phẩm phù hợp.</p>
-                    </div>
-                </c:if>
-            </div>
         </main>
-
         <footer>
             <a href="${pageContext.request.contextPath}/HomePage.jsp" class="logo">PTIT Interior</a>
             <ul>
@@ -116,6 +91,5 @@
                 &copy; 2026 PTIT Interior. Bảo lưu mọi quyền.
             </div>
         </footer>
-
     </body>
 </html>
