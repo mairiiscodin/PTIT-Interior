@@ -63,10 +63,26 @@
         <section class="featured-products">
             <h2 class="section-title">Sản Phẩm Nổi Bật</h2>
             <div class="products-grid">
-                <div class="product-card">Hình ảnh Sản phẩm 1</div>
-                <div class="product-card">Hình ảnh Sản phẩm 2</div>
-                <div class="product-card">Hình ảnh Sản phẩm 3</div>
-                <div class="product-card">Hình ảnh Sản phẩm 4</div>
+                <div class="product-card">
+                    <a href="${pageContext.request.contextPath}/ProductsController" class="btn">
+                        <img src="${pageContext.request.contextPath}/image/bed.jpg"">
+                    </a>
+                </div>
+                <div class="product-card">
+                    <a href="${pageContext.request.contextPath}/ProductsController" class="btn">
+                        <img src="${pageContext.request.contextPath}/image/lamp.jpg"">
+                    </a>
+                </div>
+                <div class="product-card">
+                    <a href="${pageContext.request.contextPath}/ProductsController" class="btn">
+                        <img src="${pageContext.request.contextPath}/image/sofa.jpg"">
+                    </a>
+                </div>
+                <div class="product-card">
+                    <a href="${pageContext.request.contextPath}/ProductsController" class="btn">
+                        <img src="${pageContext.request.contextPath}/image/wardrobe.jpg"">
+                    </a>
+                </div>
             </div>
             <div class="text-center">
                 <a href="${pageContext.request.contextPath}/ProductsController" class="btn-outline">Xem tất cả sản phẩm</a>
