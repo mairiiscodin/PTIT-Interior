@@ -1,0 +1,207 @@
+@charset "UTF-8";
+
+/* ==========================================================================
+   BIẾN (VARIABLES) & CÀI ĐẶT CHUNG
+   ========================================================================== */
+:root {
+    --primary-color: #000000;
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --border-color: #e5e5e5;
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Montserrat', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    height: 100vh;
+    overflow: hidden; /* Tránh thanh cuộn dư thừa trên màn hình login/register */
+}
+
+/* Container dùng chung cho cả Login & Register */
+.login-container, .register-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+/* ==========================================================================
+   BÊN TRÁI: HÌNH ẢNH THƯƠNG HIỆU
+   ========================================================================== */
+.left-side {
+    flex: 1.2;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+    padding: 40px;
+}
+
+.left-side h2 {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.left-side p {
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+/* ==========================================================================
+   BÊN PHẢI: FORM NHẬP LIỆU
+   ========================================================================== */
+.right-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px;
+    overflow-y: auto; /* Cho phép cuộn nếu form dài (trên màn hình thấp) */
+}
+
+form {
+    width: 100%;
+    max-width: 380px; /* Mặc định cho Login */
+}
+
+/* Mở rộng form Register cho cân đối */
+.register-form {
+    max-width: 450px !important;
+}
+
+.form-header {
+    margin-bottom: 40px;
+    text-align: left;
+    width: 100%;
+}
+
+.form-header h3 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+/* --- ĐỊNH DẠNG Ô NHẬP LIỆU --- */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 15px 5px;
+    margin-bottom: 25px;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    outline: none;
+    transition: all 0.3s ease;
+    background-color: transparent;
+}
+
+input:focus {
+    border-bottom-color: var(--primary-color);
+}
+
+/* Hiệu ứng ẩn placeholder khi gõ */
+input:focus::placeholder {
+    opacity: 0;
+    transform: translateX(10px);
+    transition: 0.3s;
+}
+
+/* Chia cột cho form Register */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 20px;
+}
+
+/* --- THÔNG BÁO LỖI & LINK --- */
+.error-msg {
+    color: #d9534f;
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.register-link {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 20px;
+}
+
+.register-link a {
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 5px;
+    border-bottom: 1px solid transparent;
+}
+
+.register-link a:hover {
+    border-bottom-color: var(--primary-color);
+}
+
+/* --- NÚT BẤM --- */
+button[type="submit"] {
+    width: 100%;
+    padding: 16px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: 1px solid var(--primary-color);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+    background-color: transparent;
+    color: var(--primary-color);
+}
+
+/* ==========================================================================
+   RESPONSIVE (Tương thích di động)
+   ========================================================================== */
+@media (max-width: 900px) {
+    body {
+        overflow-y: auto;
+    }
+    .left-side { 
+        display: none; 
+    }
+    .right-side { 
+        flex: 1; 
+        padding: 40px 20px; 
+    }
+    .form-row {
+        grid-template-columns: 1fr; /* Trở về 1 cột trên mobile */
+    }
+    .login-container, .register-container {
+        height: auto;
+        min-height: 100vh;
+    }
+}

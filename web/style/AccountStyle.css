@@ -1,0 +1,187 @@
+:root {
+    --primary-color: #1a1a1a;
+    --accent-color: #c5a059; /* Màu vàng đồng đặc trưng nội thất sang trọng */
+    --bg-color: #fcfcfc;
+    --text-muted: #888;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.profile-container {
+    max-width: 1000px;
+    margin: 80px auto;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 40px;
+    padding: 0 20px;
+}
+
+/* Sidebar bên trái */
+.profile-sidebar {
+    background: white;
+    padding: 40px 30px;
+    height: fit-content;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+}
+
+.profile-sidebar h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+}
+
+.menu-item {
+    display: block;
+    padding: 15px 0;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.menu-item:hover, .menu-item.active {
+    color: var(--primary-color);
+    font-weight: 600;
+    padding-left: 10px;
+}
+
+.menu-item.active {
+    border-bottom: 1px solid var(--accent-color);
+}
+
+/* Form nội dung bên phải */
+.profile-content {
+    background: white;
+    padding: 50px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+}
+
+.profile-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+.success-msg {
+    background-color: #f0fff4;
+    color: #27ae60;
+    padding: 15px;
+    margin-bottom: 25px;
+    font-size: 0.9rem;
+    border-left: 4px solid #27ae60;
+}
+
+.form-group {
+    margin-bottom: 30px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 12px 0;
+    border: none;
+    border-bottom: 1px solid #e0e0e0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    outline: none;
+    background: transparent;
+}
+
+.form-group input:focus, .form-group textarea:focus {
+    border-bottom: 1px solid var(--accent-color);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.btn-update {
+    background: var(--primary-color);
+    color: white;
+    padding: 18px 45px;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: all 0.4s ease;
+    margin-top: 10px;
+}
+
+.btn-update:hover {
+    background: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(197, 160, 89, 0.3);
+}
+
+/* Responsive cho mobile */
+@media (max-width: 768px) {
+    .profile-container {
+        grid-template-columns: 1fr;
+    }
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+/* CSS Bảng Đơn Hàng Cải Tiến */
+.order-table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    margin-top: 20px; 
+    border: 1px solid #e0e0e0; /* Thêm viền bọc ngoài cùng cho bảng */
+}
+
+.order-table th, .order-table td { 
+    padding: 15px 12px; /* Tăng khoảng cách để chữ không dính vào viền */
+    text-align: left; 
+    border: 1px solid #e0e0e0; /* Thêm viền lưới cho từng ô */
+    font-size: 0.9rem; 
+    vertical-align: middle; /* Căn giữa chữ theo chiều dọc */
+}
+
+.order-table th { 
+    font-weight: 600; 
+    text-transform: uppercase; 
+    font-size: 0.85rem; 
+    color: #333; 
+    background-color: #f9f9f9; /* Thêm màu nền nhạt cho hàng tiêu đề để phân biệt */
+    letter-spacing: 0.5px; 
+    white-space: nowrap; /* Ép tiêu đề không bao giờ được rớt dòng */
+}
+
+/* Ngăn việc rớt dòng vô duyên ở các cột chứa nội dung ngắn */
+.order-table td:nth-child(1), /* Cột Mã ĐH */
+.order-table td:nth-child(2), /* Cột Ngày đặt */
+.order-table td:nth-child(4), /* Cột Phương thức */
+.order-table td:nth-child(5) { /* Cột Trạng thái */
+    white-space: nowrap; /* Bắt buộc chữ hiển thị trên 1 dòng */
+}
+
+/* Cho phép cột Tổng tiền có thể co giãn một chút nếu cần */
+.order-table td:nth-child(3) {
+    min-width: 120px;
+}
