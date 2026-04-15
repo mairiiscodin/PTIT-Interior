@@ -57,7 +57,7 @@ public class AddToCartController extends HttpServlet {
             }
 
             // 3. Sau khi thêm thành công, chuyển hướng về trang giỏ hàng hoặc trang sản phẩm
-            response.sendRedirect("Cart.jsp");
+            response.sendRedirect(request.getContextPath() + "/cart");
             // Có thể đổi cho phù hợp với module giỏ hàng
             
         } catch (Exception e) {
