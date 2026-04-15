@@ -1,13 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
+
 package Controller;
 
 import Model.User;
 import dal.UserDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -34,8 +30,8 @@ public class AccountController extends HttpServlet {
             return;
         }
 
-        int userId = userDAO.getUserIdByFullName(fullName);
-        User user = userDAO.getUserById(userId);
+        int userId = (Integer) session.getAttribute("user_id");
+        User user = UserDAO.getUserById(userId);
         
         request.setAttribute("user", user);
         request.getRequestDispatcher("Account.jsp").forward(request, response);

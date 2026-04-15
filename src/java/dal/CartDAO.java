@@ -1,13 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dal;
-
-/**
- *
- * @author Laptop
- */
 
 import Controller.DBConnect;
 import static Controller.DBConnect.getConnection;
@@ -17,8 +8,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class CartDAO {
+
     // Lấy CartID của user, nếu chưa có thì tạo mới
     public int getCartIdByUserId(int userId) {
         int cartId = -1;
@@ -29,7 +20,7 @@ public class CartDAO {
             PreparedStatement ps = conn.prepareStatement(selectSql);
             ps.setInt(1, userId);
             ResultSet rs = ps.executeQuery();
-            
+
             if (rs.next()) {
                 cartId = rs.getInt("id");
             } else {
@@ -55,7 +46,7 @@ public class CartDAO {
             Connection conn = DBConnect.getConnection();
             // Sử dụng ON DUPLICATE KEY UPDATE của MySQL để xử lý nhanh
             String sql = "INSERT INTO CartItem (cart_id, product_id, quantity) VALUES (?, ?, ?) "
-                       + "ON DUPLICATE KEY UPDATE quantity = quantity + ?";
+                    + "ON DUPLICATE KEY UPDATE quantity = quantity + ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, cartId);
             ps.setInt(2, productId);
@@ -105,15 +96,14 @@ public class CartDAO {
             return;
         }
 
-        // Câu lệnh này sẽ thêm mới nếu chưa có, hoặc CỘNG DỒN nếu đã có
         String sql = "INSERT INTO CartItem (cart_id, product_id, quantity) VALUES (?, ?, ?) "
                 + "ON DUPLICATE KEY UPDATE quantity = quantity + ?";
 
         try (Connection conn = getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, cartId);
             ps.setInt(2, productId);
-            ps.setInt(3, quantity); // Giá trị để INSERT mới
-            ps.setInt(4, quantity); // Giá trị để CỘNG THÊM khi UPDATE
+            ps.setInt(3, quantity);
+            ps.setInt(4, quantity); 
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -194,26 +184,17 @@ public class CartDAO {
             e.printStackTrace();
         }
     }
-    
+
     public void clearCart(int userId) {
-    // Bước 1: Lấy cartId của người dùng (giống các hàm khác bạn đã viết)
-    int cartId = getOrCreateCartId(userId);
-    
-    if (cartId != -1) {
-        // Bước 2: Xóa tất cả các dòng trong bảng CartItem có cart_id này
-        String sql = "DELETE FROM CartItem WHERE cart_id = ?";
-        
-        try (Connection conn = DBConnect.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-            
-            ps.setInt(1, cartId);
-            int rowsDeleted = ps.executeUpdate();
-            
-            System.out.println("Đã dọn dẹp giỏ hàng. Số sản phẩm đã xóa: " + rowsDeleted);
-            
-        } catch (Exception e) {
-            e.printStackTrace();
+        int cartId = getOrCreateCartId(userId);
+        if (cartId != -1) {
+            String sql = "DELETE FROM CartItem WHERE cart_id = ?";
+            try (Connection conn = DBConnect.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+                ps.setInt(1, cartId);
+                int rowsDeleted = ps.executeUpdate();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
-}
 }

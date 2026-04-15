@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-
+<fmt:setLocale value="vi_VN" />
 <!DOCTYPE html>
 <html lang="vi">
     <head>
@@ -73,7 +73,7 @@
                                                     <div>
                                                         <span class="product-name">${item.product.name}</span>
                                                         <span style="font-size: 0.8rem; color: #666;">
-                                                            <fmt:formatNumber value="${item.product.price}" type="currency" currencySymbol="₫"/>
+                                                            <fmt:formatNumber value="${item.product.price}" type="currency" currencyCode="VND"/>
                                                         </span>
                                                             <br>
                                                             <span class="product-stock">Số lượng sản phẩm còn: ${item.product.stock}</span><br>
@@ -152,61 +152,6 @@
                                     </form>
                                 </div>
                             </div>
-
-                                        <style>
-                                /* CSS cho Modal sang trọng */
-                                .modal {
-                                    display: none;
-                                    position: fixed;
-                                    z-index: 1000;
-                                    left: 0;
-                                    top: 0;
-                                    width: 100%;
-                                    height: 100%;
-                                    background-color: rgba(0,0,0,0.5);
-                                }
-                                .modal-content {
-                                    background-color: #fff;
-                                    margin: 10% auto;
-                                    padding: 30px;
-                                    border-radius: 8px;
-                                    width: 450px;
-                                    position: relative;
-                                    font-family: 'Montserrat', sans-serif;
-                                }
-                                .close {
-                                    position: absolute;
-                                    right: 20px;
-                                    top: 10px;
-                                    font-size: 28px;
-                                    cursor: pointer;
-                                }
-                                .form-group {
-                                    margin-bottom: 15px;
-                                }
-                                .form-group label {
-                                    display: block;
-                                    margin-bottom: 5px;
-                                    font-weight: 600;
-                                }
-                                .form-group input, .form-group textarea {
-                                    width: 100%;
-                                    padding: 10px;
-                                    border: 1px solid #ddd;
-                                    border-radius: 4px;
-                                }
-                                .confirm-btn {
-                                    width: 100%;
-                                    background: #000;
-                                    color: #fff;
-                                    padding: 12px;
-                                    border: none;
-                                    cursor: pointer;
-                                    text-transform: uppercase;
-                                    margin-top: 10px;
-                                }
-                            </style>
-
                             <script>
                                 function openOrderModal() {
                                     document.getElementById('orderModal').style.display = 'block';
@@ -240,10 +185,18 @@
             </c:choose>
         </main>
 
-        <footer style="margin-top: 100px; padding: 60px 5%; border-top: 1px solid var(--border-color); text-align: center;">
-            <div class="logo" style="margin-bottom: 20px;">PTITInterior</div>
-            <p class="copyright">&copy; 2026 PTIT Interior Design. All rights reserved.</p>
-        </footer>
+                        <footer>
+                            <a href="${pageContext.request.contextPath}/HomePage.jsp" class="logo">PTIT Interior</a>
+                            <ul>
+                                <li><a href="${pageContext.request.contextPath}/Description.jsp">Giới thiệu</a></li>
+                                <li><a href="${pageContext.request.contextPath}/Description.jsp">Tổng công ty</a></li>
+                                <li><a href="${pageContext.request.contextPath}/Description.jsp">Tuyển dụng</a></li>
+                                <li><a href="${pageContext.request.contextPath}/Contact.jsp">Liên hệ thiết kế</a></li>
+                            </ul>
+                            <div class="copyright">
+                                &copy; 2026 PTIT Interior. Bảo lưu mọi quyền.
+                            </div>
+                        </footer>
 
         <script>
             const formatter = new Intl.NumberFormat('vi-VN', {
@@ -258,6 +211,12 @@
                     console.log("Đang gửi yêu cầu xóa ID: " + productId + " với số lượng: " + newQty);
                     if (!confirm("Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng?"))
                         return;
+                }
+                if (newQty < 0) {
+                    alert("Số lượng sản phẩm không thể âm, vui lòng nhập lại!!");
+                    // Đưa ô nhập liệu về 1
+                    document.querySelector("#item-row-" + productId + " .qty-input").value = 1;
+                    newQty = 1;
                 }
                 if (newQty > maxStock) {
                     alert("Rất tiếc, PTIT Interior chỉ còn " + maxStock + " sản phẩm này trong kho.");

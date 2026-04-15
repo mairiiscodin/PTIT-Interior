@@ -1,12 +1,7 @@
-<%-- 
-    Document   : OrderHistory
-    Created on : Apr 13, 2026, 8:51:05 PM
-    Author     : nguye
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<fmt:setLocale value="vi_VN" />
 <!DOCTYPE html>
 <html>
     <head>
@@ -73,32 +68,34 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <c:forEach var="o" items="${orders}">
-                                <tr>
-                                    <td style="font-weight: 600;">#${o.id}</td>
-                                    <td><fmt:formatDate value="${o.createdAt}" pattern="dd/MM/yyyy HH:mm"/></td>
-                                <td style="color: var(--accent-color); font-weight: 500;">
-                                <fmt:formatNumber value="${o.totalAmount}" type="currency" currencySymbol="₫"/>
-                                </td>
-                                <td>${o.paymentMethod}</td>
-                                <td>
-                                <c:choose>
-                                    <c:when test="${o.status == 'Chờ xác nhận'}">
-                                        <span class="badge status-choxacnhan">Chờ xác nhận</span>
-                                    </c:when>
-                                    <c:when test="${o.status == 'Đang giao'}">
-                                        <span class="badge status-danggiao">Đang giao</span>
-                                    </c:when>
-                                    <c:when test="${o.status == 'Hoàn thành'}">
-                                        <span class="badge status-hoanthanh">Hoàn thành</span>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <span class="badge" style="background:#eee; color:#333;">${o.status}</span>
-                                    </c:otherwise>
-                                </c:choose>
-                                </td>
-                                </tr>
-                            </c:forEach>
+                                <c:forEach var="o" items="${orders}">
+                                    <tr>
+                                        <td style="font-weight: 600;"><a href="OrderDetailController?id=${o.id}" style="color: var(--accent-color); text-decoration: underline;">
+                                                #${o.id}
+                                            </a></td>
+                                        <td><fmt:formatDate value="${o.createdAt}" pattern="dd/MM/yyyy HH:mm"/></td>
+                                        <td style="color: var(--accent-color); font-weight: 500;">
+                                            <fmt:formatNumber value="${o.totalAmount}" type="currency" currencyCode="VND"/>
+                                        </td>
+                                        <td>${o.paymentMethod}</td>
+                                        <td>
+                                            <c:choose>
+                                                <c:when test="${o.status == 'Chờ xác nhận'}">
+                                                    <span class="badge status-choxacnhan">Chờ xác nhận</span>
+                                                </c:when>
+                                                <c:when test="${o.status == 'Đang giao'}">
+                                                    <span class="badge status-danggiao">Đang giao</span>
+                                                </c:when>
+                                                <c:when test="${o.status == 'Hoàn thành'}">
+                                                    <span class="badge status-hoanthanh">Hoàn thành</span>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <span class="badge" style="background:#eee; color:#333;">${o.status}</span>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
                             </tbody>
                         </table>
                     </c:when>
@@ -114,5 +111,17 @@
                 </c:choose>
             </main>
         </div>
+        <footer>
+            <a href="${pageContext.request.contextPath}/HomePage.jsp" class="logo">PTIT Interior</a>
+            <ul>
+                <li><a href="${pageContext.request.contextPath}/Description.jsp">Giới thiệu</a></li>
+                <li><a href="${pageContext.request.contextPath}/Description.jsp">Tổng công ty</a></li>
+                <li><a href="${pageContext.request.contextPath}/Description.jsp">Tuyển dụng</a></li>
+                <li><a href="${pageContext.request.contextPath}/Contact.jsp">Liên hệ thiết kế</a></li>
+            </ul>
+            <div class="copyright">
+                &copy; 2026 PTIT Interior. Bảo lưu mọi quyền.
+            </div>
+        </footer>
     </body>
 </html>

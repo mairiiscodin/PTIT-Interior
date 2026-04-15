@@ -85,6 +85,17 @@
                 </form>
             </main>
         </div>
-
+                        <footer>
+                            <a href="${pageContext.request.contextPath}/HomePage.jsp" class="logo">PTIT Interior</a>
+                            <ul>
+                                <li><a href="${pageContext.request.contextPath}/Description.jsp">Giới thiệu</a></li>
+                                <li><a href="${pageContext.request.contextPath}/Description.jsp">Tổng công ty</a></li>
+                                <li><a href="${pageContext.request.contextPath}/Description.jsp">Tuyển dụng</a></li>
+                                <li><a href="${pageContext.request.contextPath}/Contact.jsp">Liên hệ thiết kế</a></li>
+                            </ul>
+                            <div class="copyright">
+                                &copy; 2026 PTIT Interior. Bảo lưu mọi quyền.
+                            </div>
+                        </footer>
     </body>
 </html>

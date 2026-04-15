@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package Controller;
 
 import Model.Order;
@@ -16,10 +12,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
 
-/**
- *
- * @author nguye
- */
 @WebServlet(name = "OrderHistoryController", urlPatterns = {"/history"})
 public class OrderHistoryController extends HttpServlet {
 
@@ -36,11 +28,9 @@ public class OrderHistoryController extends HttpServlet {
             return;
         }
 
-        int userId = userDAO.getUserIdByFullName(fullName);
-        List<Order> orders = orderDAO.getOrdersByUserId(userId);
-        for (Order o : orders) {
-            System.out.println(o.getId());
-        }
+        int userId = (Integer) session.getAttribute("user_id");
+        List<Order> orders = OrderDAO.getOrdersByUserId(userId);
+        
         request.setAttribute("orders", orders);
         request.getRequestDispatcher("OrderHistory.jsp").forward(request, response);
     }
