@@ -43,7 +43,7 @@
                     <ul>
                         <li><a href="${pageContext.request.contextPath}/HomePage.jsp">Trang chủ</a></li>
                         <li><a href="${pageContext.request.contextPath}/ProductsController">Sản phẩm</a></li>
-                        <li><a href="${pageContext.request.contextPath}/Cart.jsp">Giỏ hàng</a></li>
+                        <li><a href="${pageContext.request.contextPath}/cart">Giỏ hàng</a></li>
                         <li><a href="${pageContext.request.contextPath}/Description.jsp">Mô tả</a></li>
                         <li><a href="${pageContext.request.contextPath}/Contact.jsp">Liên hệ</a></li>
                     </ul>

@@ -43,7 +43,7 @@
                     <ul>
                         <li><a href="${pageContext.request.contextPath}/HomePage.jsp">Trang chủ</a></li>
                         <li><a href="${pageContext.request.contextPath}/ProductsController">Sản phẩm</a></li>
-                        <li><a href="${pageContext.request.contextPath}/Cart.jsp">Giỏ hàng</a></li>
+                        <li><a href="${pageContext.request.contextPath}/cart">Giỏ hàng</a></li>
                         <li><a href="${pageContext.request.contextPath}/Description.jsp">Mô tả</a></li>
                         <li><a href="${pageContext.request.contextPath}/Contact.jsp">Liên hệ</a></li>
                     </ul>
@@ -66,8 +66,8 @@
                         <p>${detail.description}</p>
                     </div>
                     
-                    <form action="AddToCartController" method="post">
-                        <input type="hidden" name="productId" value="${detail.id}">
+                        <form action="AddToCartController" method="post">
+                            <input type="hidden" name="productId" value="${detail.id}">
                         <div class="quantity-select">
                             <label>Số lượng:</label>
                             <input type="number" name="quantity" value="1" min="1" max="${detail.stock}">
