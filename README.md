@@ -16,6 +16,19 @@
 | Thank.jsp | Jsp trang cảm ơn sau khi đặt hàng |
 | Contact.jsp | Jsp trang liên hệ |
 
+### 📁web/admin
+
+| **File** | **Mô tả** |
+|----------|-----------|
+| admin-sidebar.jsp | Jsp trang thanh bên chứa các nút điều hướng |
+| admin-dashboard.jsp | Jsp trang thống kê chi tiết |
+| admin-products.jsp | Jsp trang danh sách sản phẩm |
+| edit-product.jsp | Jsp trang CRUD sản phẩm |
+| admin-orders.jsp | Jsp trang danh sách hóa đơn |
+| show-orders.jsp | Jsp trang hiển thị hóa đơn |
+| admin-users.jsp | Jsp trang danh sách và các tính năng CRUD với tài khoản người dùng |
+| admin-inventory.jsp | Jsp trang danh sách các giao dịch xuất/ nhập hàng |
+
 ### 📁web/style
 
 | **File** | **Mô tả** |
@@ -24,7 +37,12 @@
 | LoginStyle.css | css dùng cho Login.jsp và Register.jsp |
 | AccountStyle.css | css dùng cho trang Account.jsp |
 | CartStyle.css | css dùng cho Cart.jsp|
-
+| admin_layout.css | css dùng cho admin-sidebar.jsp |
+| dashboard.css | css dùng cho admin-dashboard.jsp |
+| inventory.css | css dùng cho admin-inventory.jsp |
+| orders.css | css dùng cho admin-orders.jsp |
+| products.css | css dùng cho admin-products.jsp |
+| user.css | css dùng cho admin-users.jsp |
 
 ### 📁src/java/Controller
 
@@ -38,7 +56,17 @@
 | CartController.java | servlet xử lý việc lấy dữ liệu cho Cart.jsp hiện thị và xử lý việc thay đổi số lượng sản phẩm trong giỏ hàng|
 | AddToCartController.java | servlet xử lý việc thêm sản phẩm vào giỏ hàng|
 | OrderController.java | servlet xử lý tạo đơn hàng|
-
+| AdminAddCategoryServlet.java | servlet xử lý thêm danh mục |
+| AdminAddProductServlet.java | servlet xử lý thêm sản phẩm |
+| AdminDashboardServlet.java | servlet xử lý thông tin thống kê ở trang chủ |
+| AdminEditProductServlet.java | servlet xử lý sửa thông tin sản phẩm |
+| AdminInventoryServlet.java | servlet xử lý thông tin các giao dịch xuất/nhập hàng |
+| AdminOrderDetailServlet.java | servlet xử lý hiển thị thông tin đơn hàng |
+| AdminOrdersServlet.java | servlet xử lý hiển thị danh sách hóa đơn |
+| AdminProductServlet.java | servlet xử lý hiển thị danh sách sản phẩm |
+| AdminUpdateOrderServlet.java | servlet xử lý cập nhật trạng thái đơn |
+| AdminUserActionServlet.java | servlet xử lý thêm sửa xóa tài khoản người dùng |
+| AdminUsersServlet.java | servlet xử lý hiển thị danh sách tài khoản người dùng |
 
 ### 📁src/java/Model
 
@@ -64,4 +92,6 @@
 | UserDAO.java | kết nối với db để thực hiện crud với bảng user  |
 | DashboardDAO.java | kết nối với db để thực hiện các lệnh thống kê  |
 | InventoryTransactionDAO.java | kết nối với db để thực hiện thêm các giao dịch với bảng inventory_transactions  |
+| OrderItemDAO.java | kết nối với db để thực hiện tìm kiếm với bảng order_items |
+
 

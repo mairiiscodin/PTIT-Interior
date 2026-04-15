@@ -1,0 +1,51 @@
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== LAYOUT TỔNG ===== */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    background: #ecf0f1;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+    width: 240px;
+    background: #2c3e50;
+    color: white;
+    min-height: 100vh;
+    padding: 20px;
+    flex-shrink: 0;
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    padding: 12px;
+    margin: 8px 0;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+.sidebar a:hover {
+    background: #34495e;
+}
+
+/* ===== MAIN CONTENT ===== */
+.main {
+    flex: 1;
+    padding: 24px;
+    background: #ecf0f1;
+    min-height: 100vh;
+    overflow-x: auto;
+}

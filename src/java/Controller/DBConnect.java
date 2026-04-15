@@ -17,7 +17,7 @@ public class DBConnect {
         try {
             String url = "jdbc:mysql://localhost:3306/web_ban_hang";
             String user = "root";
-            String password = "admin";
+            String password = "123";
 
             Class.forName("com.mysql.cj.jdbc.Driver");
 

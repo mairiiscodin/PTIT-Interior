@@ -1,0 +1,480 @@
+/* ===== PAGE HEADER ===== */
+.page-header {
+    margin-bottom: 24px;
+}
+
+.page-header h2 {
+    font-size: 28px;
+    color: #1e293b;
+    margin-bottom: 6px;
+}
+
+.page-header p {
+    color: #64748b;
+    font-size: 15px;
+}
+
+/* ===== FILTER BAR ===== */
+.filter-bar {
+    background: white;
+    padding: 20px;
+    border-radius: 18px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
+    margin-bottom: 24px;
+}
+
+.filter-form {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.search-box {
+    flex: 1;
+    min-width: 260px;
+    position: relative;
+}
+
+.search-box i {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px 14px 12px 40px;
+    border: 1px solid #dbe2ea;
+    border-radius: 12px;
+    outline: none;
+    font-size: 14px;
+}
+
+.filter-form select {
+    padding: 12px 14px;
+    border: 1px solid #dbe2ea;
+    border-radius: 12px;
+    outline: none;
+    font-size: 14px;
+    min-width: 180px;
+    background: white;
+}
+
+.btn-filter {
+    padding: 12px 18px;
+    border: none;
+    background: #f59e0b;
+    color: white;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+.btn-filter:hover {
+    opacity: 0.9;
+}
+
+/* ===== TABLE ===== */
+.table-container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
+    padding: 12px 18px;
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 1250px;
+}
+
+.user-table thead {
+    background: #f8fafc;
+}
+
+.user-table th,
+.user-table td {
+    padding: 16px 14px;
+    text-align: left;
+    border-bottom: 1px solid #eef2f7;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.user-table th {
+    color: #334155;
+    font-weight: 700;
+}
+
+.user-table td {
+    color: #475569;
+}
+
+.user-table tr:hover {
+    background: #fcfcfd;
+}
+
+/* ===== BADGES ===== */
+.status-badge,
+.role-badge {
+    display: inline-block;
+    padding: 7px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Vai trò */
+.admin-role {
+    background: #ede9fe;
+    color: #6d28d9;
+}
+
+.user-role {
+    background: #e0f2fe;
+    color: #0369a1;
+}
+
+/* Trạng thái */
+.active-status {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.locked-status {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+/* ===== ACTIONS ===== */
+.status-form {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.status-form select {
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: 1px solid #dbe2ea;
+    font-size: 13px;
+    background: white;
+    min-width: 130px;
+}
+
+.btn-update {
+    padding: 8px 12px;
+    border: none;
+    background: #0f172a;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.btn-view {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    background: #e0f2fe;
+    color: #0369a1;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+.btn-view:hover {
+    opacity: 0.85;
+}
+
+.empty-row {
+    text-align: center !important;
+    padding: 30px !important;
+    color: #94a3b8;
+    font-style: italic;
+}
+
+/* ===== STICKY CỘT ID ===== */
+.user-table th:first-child,
+.user-table td:first-child {
+    position: sticky;
+    left: 0;
+    background: white;
+    z-index: 2;
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.06);
+}
+
+.user-table thead th:first-child {
+    background: #f8fafc;
+    z-index: 3;
+}
+
+.user-table tbody tr:hover td:first-child {
+    background: #fcfcfd;
+}
+
+/* ===== FIX CHO BẢNG USER KHỎI DÍNH ===== */
+.user-table th:nth-child(1),
+.user-table td:nth-child(1) {
+    min-width: 90px;
+}
+
+.user-table th:nth-child(2),
+.user-table td:nth-child(2) {
+    min-width: 170px;
+}
+
+.user-table th:nth-child(3),
+.user-table td:nth-child(3) {
+    min-width: 220px;
+}
+
+.user-table th:nth-child(4),
+.user-table td:nth-child(4) {
+    min-width: 140px;
+}
+
+.user-table th:nth-child(5),
+.user-table td:nth-child(5) {
+    min-width: 110px;
+}
+
+.user-table th:nth-child(6),
+.user-table td:nth-child(6) {
+    min-width: 140px;
+}
+
+.user-table th:nth-child(7),
+.user-table td:nth-child(7) {
+    min-width: 180px;
+}
+
+.user-table th:nth-child(8),
+.user-table td:nth-child(8) {
+    min-width: 130px;
+}
+/* ===== ACTION GROUP KHI CHỈ CÒN NÚT XÓA ===== */
+.action-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.action-group form {
+    margin: 0;
+}
+
+/* ===== NÚT XÓA ===== */
+.btn-delete {
+    border: none;
+    background: #fee2e2;
+    color: #b91c1c;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-delete:hover {
+    opacity: 0.85;
+}
+
+.btn-delete:disabled {
+    background: #e2e8f0;
+    color: #94a3b8;
+    cursor: not-allowed;
+    opacity: 1;
+}
+/* ===== FORM THÊM ADMIN ===== */
+.add-user-box {
+    background: white;
+    padding: 24px;
+    border-radius: 20px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
+    margin-bottom: 24px;
+    border: 1px solid #eef2f7;
+}
+
+.add-user-box h3 {
+    font-size: 22px;
+    color: #1e293b;
+    margin-bottom: 6px;
+}
+
+.form-subtitle {
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 22px;
+}
+
+.add-user-form .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+    gap: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    padding: 13px 14px;
+    border: 1px solid #dbe2ea;
+    border-radius: 12px;
+    outline: none;
+    font-size: 14px;
+    background: #fff;
+    transition: 0.2s;
+}
+
+.form-group input:focus {
+    border-color: #0f766e;
+    box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.12);
+}
+
+.full-width {
+    grid-column: span 2;
+}
+
+/* ===== THÔNG TIN MẶC ĐỊNH ===== */
+.default-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 20px;
+    padding: 14px 16px;
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    border-radius: 14px;
+}
+
+.default-info span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #334155;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.default-info i {
+    color: #0f766e;
+}
+
+/* ===== ACTIONS ===== */
+.form-actions {
+    margin-top: 22px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-save-user {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 18px;
+    border: none;
+    background: #0f172a;
+    color: white;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: 0.25s;
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.16);
+}
+
+.btn-save-user:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+}
+
+.btn-save-user:active {
+    transform: translateY(0);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .add-user-form .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full-width {
+        grid-column: span 1;
+    }
+
+    .form-actions {
+        justify-content: stretch;
+    }
+
+    .btn-save-user {
+        width: 100%;
+        justify-content: center;
+    }
+}
+/* ===== KHỐI CHỨA NÚT THÊM ===== */
+.top-actions {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 18px;
+}
+
+/* ===== NÚT THÊM TÀI KHOẢN ===== */
+.btn-add-user {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 18px;
+    border: none;
+    background: #0f766e;
+    color: #ffffff;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.25s ease;
+    box-shadow: 0 8px 18px rgba(15, 118, 110, 0.18);
+    text-decoration: none;
+    outline: none;
+}
+
+.btn-add-user i {
+    font-size: 14px;
+}
+
+.btn-add-user:hover {
+    opacity: 0.95;
+    transform: translateY(-1px);
+}
+
+.btn-add-user:active {
+    transform: translateY(0);
+}
+.alert.error{
+	color: red;
+}
+.alert.success{
+	color: green;
+}
