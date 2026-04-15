@@ -1,4 +1,4 @@
-package DAO;
+package dal;
 
 import Controller.DBConnect;
 import Model.User;
