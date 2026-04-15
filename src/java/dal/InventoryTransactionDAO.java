@@ -149,24 +149,15 @@ public class InventoryTransactionDAO {
 		return isSuccess;
 	}
 
-	// 3. Phương thức thêm Phiếu Xuất Kho (Ghi Log + Trừ số lượng)
+	// 3. Phương thức thêm Phiếu Xuất Kho (Ghi Log)
 	public static boolean addExportTransaction(InventoryTransaction tx) {
-		Connection conn = null;
-		PreparedStatement psInsertLog = null;
-		PreparedStatement psUpdateStock = null;
 		boolean isSuccess = false;
-
 		String insertLogSQL = "INSERT INTO inventory_transactions (product_id, user_id, transaction_type, quantity_changed, note) VALUES (?, ?, ?, ?, ?)";
-	
-		String updateStockSQL = "UPDATE products SET stock = stock - ? WHERE id = ? AND stock >= ?";
+		
+		try (Connection conn = DBConnect.getConnection(); PreparedStatement psInsertLog = conn.prepareStatement(insertLogSQL)) {
 
-		try {
-			conn = DBConnect.getConnection();
-			conn.setAutoCommit(false);
-
-			// Bước 1: Ghi log
-			psInsertLog = conn.prepareStatement(insertLogSQL);
 			psInsertLog.setInt(1, tx.getProduct().getId());
+
 			if (tx.getUser() != null && tx.getUser().getId() > 0) {
 				psInsertLog.setInt(2, tx.getUser().getId());
 			} else {
@@ -174,54 +165,19 @@ public class InventoryTransactionDAO {
 			}
 
 			psInsertLog.setString(3, tx.getTransactionType());
-
 			psInsertLog.setInt(4, tx.getQuantityChanged());
 			psInsertLog.setString(5, tx.getNote());
-			psInsertLog.executeUpdate();
 
-			// Bước 2: Trừ kho
-			psUpdateStock = conn.prepareStatement(updateStockSQL);
-			psUpdateStock.setInt(1, tx.getQuantityChanged());
-			psUpdateStock.setInt(2, tx.getProduct().getId());
-			psUpdateStock.setInt(3, tx.getQuantityChanged()); // Điều kiện stock >= số lượng xuất
+			int rowsAffected = psInsertLog.executeUpdate();
 
-			int rowsAffected = psUpdateStock.executeUpdate();
-
-			if (rowsAffected == 0) {
-				// Nếu rowsAffected = 0 nghĩa là Kho không đủ hàng
-				conn.rollback(); // Hủy toàn bộ thao tác 
-				return false;
+			if (rowsAffected > 0) {
+				isSuccess = true;
 			}
-
-			// Nếu qua được thì LƯU LẠI
-			conn.commit();
-			isSuccess = true;
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			if (conn != null) {
-				try {
-					conn.rollback();
-				} catch (SQLException ex) {
-					ex.printStackTrace();
-				}
-			}
-		} finally {
-			try {
-				if (psInsertLog != null) {
-					psInsertLog.close();
-				}
-				if (psUpdateStock != null) {
-					psUpdateStock.close();
-				}
-				if (conn != null) {
-					conn.setAutoCommit(true);
-					conn.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
 		}
+
 		return isSuccess;
 	}
 }

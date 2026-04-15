@@ -60,7 +60,7 @@ public class AdminInventoryServlet extends HttpServlet {
 			try {
 				// 1. Lấy các dữ liệu từ Form gửi lên
 				String sku = request.getParameter("sku");
-				String transactionType = request.getParameter("transaction_type"); // Sẽ nhận "Nhập kho" hoặc "Xuất kho"
+				String transactionType = request.getParameter("transaction_type"); 
 				int quantityChanged = Integer.parseInt(request.getParameter("quantity_changed"));
 				String note = request.getParameter("note");
 
@@ -82,8 +82,17 @@ public class AdminInventoryServlet extends HttpServlet {
 
 				// Gán User đang đăng nhập
 				HttpSession session = request.getSession();
-				User currentUser = (User) session.getAttribute("user");
-				tx.setUser(currentUser);
+				Integer adminId = (Integer) session.getAttribute("user_id"); // Lấy ID ra dưới dạng số nguyên
+
+				if (adminId != null) {
+					User adminUser = new User();   // Tạo đối tượng User mới
+					adminUser.setId(adminId);      // Gán ID cho User đó
+					tx.setUser(adminUser);         // Đưa User vào giao
+				} else {
+					// Nếu chưa đăng nhập thì đẩy về trang lỗi
+					response.sendRedirect(request.getContextPath() + "/admin/inventory?error=unauthorized");
+					return;
+				}
 
 				// 4. Phân nhánh lưu vào DAO dựa trên loại giao dịch
 				boolean isSuccess = false;
@@ -92,8 +101,7 @@ public class AdminInventoryServlet extends HttpServlet {
 					// Nếu là Nhập kho -> Gọi hàm cộng số lượng
 					isSuccess = InventoryTransactionDAO.addImportTransaction(tx);
 
-				} else if ("Xuất kho".equals(transactionType) || "Xuất bán".equals(transactionType)) {
-					// Nếu là Xuất kho HOẶC Xuất bán -> Đều gọi chung hàm trừ số lượng
+				} else if ("Xuất kho".equals(transactionType)) {
 					isSuccess = InventoryTransactionDAO.addExportTransaction(tx);
 				}
 

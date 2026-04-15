@@ -235,3 +235,9 @@
 .order-table tbody tr:hover td:first-child {
     background: #fcfcfd;
 }
+.alert.error{
+	color: red;
+}
+.alert.success{
+	color: green;
+}

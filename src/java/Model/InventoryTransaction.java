@@ -10,7 +10,7 @@ public class  InventoryTransaction {
 	private Product product;
 	private User user;
 
-	private String transactionType; // Sẽ nhận giá trị "Nhập kho" hoặc "Xuất bán"
+	private String transactionType; 
 	private int quantityChanged;
 	private String note;
 	private Timestamp createdAt;

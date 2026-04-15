@@ -22,6 +22,16 @@
 				<h2>Quản lý đơn hàng</h2>
 			</div>
 
+			<c:if test="${param.success == 'updated'}">
+				<div class="alert success">Cập nhật trạng thái đơn thành công.</div>
+			</c:if>
+			<c:if test="${param.success == 'confirmed'}">
+				<div class="alert success">Đơn đã được xác nhận. Phiếu giao dịch đã được tạo. </div>
+			</c:if>
+			<c:if test="${param.error == 'failed'}">
+				<div class="alert error">Thất bại vui lòng thử lại. </div>
+			</c:if>
+
 			<!-- Bộ lọc -->
 			<div class="filter-bar">
 				<form action="${pageContext.request.contextPath}/admin/orders" method="get" class="filter-form">

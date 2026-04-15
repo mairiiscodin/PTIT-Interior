@@ -24,10 +24,13 @@
 				<div class="alert success">Giao dịch thành công! Số lượng tồn kho đã được cập nhật.</div>
 			</c:if>
 			<c:if test="${param.error == 'not_found'}">
-				<div class="alert error" style="color: red;">Lỗi: Không tìm thấy sản phẩm với mã SKU đã nhập!</div>
+				<div class="alert error" >Lỗi: Không tìm thấy sản phẩm với mã SKU đã nhập!</div>
 			</c:if>
 			<c:if test="${param.error == 'failed'}">
-				<div class="alert error" style="color: red;">Lỗi: Giao dịch thất bại (Có thể do trong kho không đủ hàng để xuất).</div>
+				<div class="alert error" >Lỗi: Giao dịch thất bại (Có thể do trong kho không đủ hàng để xuất).</div>
+			</c:if>
+			<c:if test="${param.error == 'unauthorized'}">
+				<div class="alert error" >Hệ thống xảy ra lỗi. Yêu cầu đăng nhập lại</div>
 			</c:if>
 
 			<div class="top-actions">
