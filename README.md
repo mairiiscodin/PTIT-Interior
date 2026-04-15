@@ -8,6 +8,7 @@
 |----------|-----------|
 | HomePage.jsp | Jsp trang chủ |
 | Products.jsp | Jsp trang sản phẩm |
+| ProductDetail.jsp | Jsp trang chi tiết sản phẩm |
 | Login.jsp | Jsp trang đăng nhập |
 | Register.jsp | Jsp trang đăng ký |
 | Description.jsp | Jsp trang mô tả brand |
@@ -15,6 +16,9 @@
 | Cart.jsp | Jsp trang giỏ hàng |
 | Thank.jsp | Jsp trang cảm ơn sau khi đặt hàng |
 | Contact.jsp | Jsp trang liên hệ |
+| OrderDetail.jsp | Jsp trang xem chi tiết đơn hàng đã đặt |
+| OrderHistory.jsp | Jsp trang xem lịch sử đặt hàng |
+
 
 ### 📁web/admin
 
@@ -55,7 +59,10 @@
 | RegisterController.java | servlet lấy dữ liệu từ register.jsp lưu vào db để đăng kí |
 | CartController.java | servlet xử lý việc lấy dữ liệu cho Cart.jsp hiện thị và xử lý việc thay đổi số lượng sản phẩm trong giỏ hàng|
 | AddToCartController.java | servlet xử lý việc thêm sản phẩm vào giỏ hàng|
+| AccountController.java | servlet xử lý trang quản lý tài khoản|
 | OrderController.java | servlet xử lý tạo đơn hàng|
+| OrderDetailController.java | servlet xử lý xem chi tiết đơn hàng đã đặt|
+| OrderHistoryController.java | servlet xử lý xem lịch sử đặt hàng|
 | AdminAddCategoryServlet.java | servlet xử lý thêm danh mục |
 | AdminAddProductServlet.java | servlet xử lý thêm sản phẩm |
 | AdminDashboardServlet.java | servlet xử lý thông tin thống kê ở trang chủ |
