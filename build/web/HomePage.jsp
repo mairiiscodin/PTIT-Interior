@@ -3,7 +3,9 @@
     Created on : Mar 24, 2026, 12:12:11 AM
     Author     : Laptop
 --%>
-
+<%@page import="java.util.List"%>
+<%@page import="Model.Product"%>
+<%@page import="dal.DashboardDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
@@ -63,26 +65,29 @@
         <section class="featured-products">
             <h2 class="section-title">Sản Phẩm Nổi Bật</h2>
             <div class="products-grid">
-                <div class="product-card">
-                    <a href="${pageContext.request.contextPath}/ProductsController" class="btn">
-                        <img src="${pageContext.request.contextPath}/image/bed.jpg"">
-                    </a>
-                </div>
-                <div class="product-card">
-                    <a href="${pageContext.request.contextPath}/ProductsController" class="btn">
-                        <img src="${pageContext.request.contextPath}/image/lamp.jpg"">
-                    </a>
-                </div>
-                <div class="product-card">
-                    <a href="${pageContext.request.contextPath}/ProductsController" class="btn">
-                        <img src="${pageContext.request.contextPath}/image/sofa.jpg"">
-                    </a>
-                </div>
-                <div class="product-card">
-                    <a href="${pageContext.request.contextPath}/ProductsController" class="btn">
-                        <img src="${pageContext.request.contextPath}/image/wardrobe.jpg"">
-                    </a>
-                </div>
+                <%
+                    List<Product> topSellers = DashboardDAO.getTopBestSellers(4);
+                    if (topSellers != null && !topSellers.isEmpty()) {
+                        for (Product p : topSellers) {
+                %>
+                    <div class="product-card">
+                        <a href="${pageContext.request.contextPath}/ProductsController?action=detail&id=<%= p.getId() %>" class="btn">
+                            <img src="${pageContext.request.contextPath}/image/<%= p.getUrlImage() %>" alt="<%= p.getName() %>">
+                        </a>
+
+                        <div style="text-align: center; margin-top: 15px;">
+                            <h3 style="font-size: 1.1rem; color: #333;"><%= p.getName() %></h3>
+                            <p style="color: #666; font-weight: 500;"><%= String.format("%,.0f", p.getPrice()) %> VNĐ</p>
+                        </div>
+                    </div>
+                <%
+                        }
+                    } else {
+                %>
+                    <p style="text-align: center; width: 100%;">Chưa có sản phẩm nổi bật nào được ghi nhận.</p>
+                <%
+                    }
+                %>
             </div>
             <div class="text-center">
                 <a href="${pageContext.request.contextPath}/ProductsController" class="btn-outline">Xem tất cả sản phẩm</a>

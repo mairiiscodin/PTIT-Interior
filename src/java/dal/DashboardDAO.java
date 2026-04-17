@@ -81,6 +81,7 @@ public class DashboardDAO {
 				p.setPrice(rs.getDouble("price"));
 				// Bạn có thể dùng field 'stock' của Product để tạm lưu 'total_sold' hiển thị ra View
 				p.setStock(rs.getInt("total_sold"));
+                                p.setUrlImage(rs.getString("url_image"));
 				list.add(p);
 			}
 		} catch (Exception e) {
