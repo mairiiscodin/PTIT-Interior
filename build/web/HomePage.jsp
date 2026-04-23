@@ -3,10 +3,9 @@
     Created on : Mar 24, 2026, 12:12:11 AM
     Author     : Laptop
 --%>
-<%@page import="java.util.List"%>
-<%@page import="Model.Product"%>
-<%@page import="dal.DashboardDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="jakarta.tags.core"%>
+<%@taglib prefix="fmt" uri="jakarta.tags.fmt"%>
 <!DOCTYPE html>
 <html lang="vi">
     <head>
@@ -24,27 +23,23 @@
         
         <header>
             <div class="top-bar">
-                <%
-                    String userName = (String) session.getAttribute("full_name");
-                    if(userName == null){
-                %>
-                    <a href="${pageContext.request.contextPath}/Login.jsp">Đăng nhập</a>
-                <%
-                    } else {
-                %>
-                    <span>Xin chào, <strong><a href="${pageContext.request.contextPath}/account"><%= userName %></a></strong></span>
-                    <span>|</span>
-                    <a href="${pageContext.request.contextPath}/LogoutController">Đăng xuất</a>
-                <%
-                    }
-                %>
+                <c:choose>
+                    <c:when test="${empty sessionScope.full_name}">
+                        <a href="${pageContext.request.contextPath}/Login.jsp">Đăng nhập</a>
+                    </c:when>
+                    <c:otherwise>
+                        <span>Xin chào, <strong><a href="${pageContext.request.contextPath}/account">${sessionScope.full_name}</a></strong></span>
+                        <span>|</span>
+                        <a href="${pageContext.request.contextPath}/LogoutController">Đăng xuất</a>
+                    </c:otherwise>
+                </c:choose>
             </div>
 
             <div class="nav-container">
-                <a href="${pageContext.request.contextPath}/HomePage.jsp" class="logo">PTIT Interior</a>
+                <a href="${pageContext.request.contextPath}/HomePageController" class="logo">PTIT Interior</a>
                 <nav>
                     <ul>
-                        <li><a href="${pageContext.request.contextPath}/HomePage.jsp">Trang chủ</a></li>
+                        <li><a href="${pageContext.request.contextPath}/HomePageController">Trang chủ</a></li>
                         <li><a href="${pageContext.request.contextPath}/ProductsController">Sản phẩm</a></li>
                         <li><a href="${pageContext.request.contextPath}/cart">Giỏ hàng</a></li>
                         <li><a href="${pageContext.request.contextPath}/Description.jsp">Mô tả</a></li>
@@ -65,29 +60,26 @@
         <section class="featured-products">
             <h2 class="section-title">Sản Phẩm Nổi Bật</h2>
             <div class="products-grid">
-                <%
-                    List<Product> topSellers = DashboardDAO.getTopBestSellers(4);
-                    if (topSellers != null && !topSellers.isEmpty()) {
-                        for (Product p : topSellers) {
-                %>
-                    <div class="product-card">
-                        <a href="${pageContext.request.contextPath}/ProductsController?action=detail&id=<%= p.getId() %>" class="btn">
-                            <img src="${pageContext.request.contextPath}/image/<%= p.getUrlImage() %>" alt="<%= p.getName() %>">
-                        </a>
-
-                        <div style="text-align: center; margin-top: 15px;">
-                            <h3 style="font-size: 1.1rem; color: #333;"><%= p.getName() %></h3>
-                            <p style="color: #666; font-weight: 500;"><%= String.format("%,.0f", p.getPrice()) %> VNĐ</p>
-                        </div>
-                    </div>
-                <%
-                        }
-                    } else {
-                %>
-                    <p style="text-align: center; width: 100%;">Chưa có sản phẩm nổi bật nào được ghi nhận.</p>
-                <%
-                    }
-                %>
+                <c:choose>
+                    <c:when test="${not empty topSellers}">
+                        <c:forEach var="p" items="${topSellers}">
+                            <div class="product-card">
+                                <a href="${pageContext.request.contextPath}/ProductsController?action=detail&id=${p.id}">
+                                    <img src="${pageContext.request.contextPath}/image/${p.urlImage}" alt="${p.name}">
+                                </a>
+                                <div style="text-align: center; margin-top: 15px;">
+                                    <h3 style="font-size: 1.1rem; color: #333;">${p.name}</h3>
+                                    <p style="color: #666; font-weight: 500;">
+                                        <fmt:formatNumber value="${p.price}" type="number" maxFractionDigits="0"/> VNĐ
+                                    </p>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </c:when>
+                    <c:otherwise>
+                        <p style="text-align: center; width: 100%;">Chưa có sản phẩm nổi bật nào được ghi nhận.</p>
+                    </c:otherwise>
+                </c:choose>
             </div>
             <div class="text-center">
                 <a href="${pageContext.request.contextPath}/ProductsController" class="btn-outline">Xem tất cả sản phẩm</a>
@@ -109,7 +101,7 @@
         </section>
 
         <footer>
-            <a href="${pageContext.request.contextPath}/HomePage.jsp" class="logo">PTIT Interior</a>
+            <a href="${pageContext.request.contextPath}/HomePageController" class="logo">PTIT Interior</a>
             <ul>
                 <li><a href="${pageContext.request.contextPath}/Description.jsp">Giới thiệu</a></li>
                 <li><a href="${pageContext.request.contextPath}/Description.jsp">Tổng công ty</a></li>

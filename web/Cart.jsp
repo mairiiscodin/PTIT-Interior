@@ -36,10 +36,10 @@
             </div>
 
             <div class="nav-container">
-                <a href="${pageContext.request.contextPath}/HomePage.jsp" class="logo">PTIT Interior</a>
+                <a href="${pageContext.request.contextPath}/HomePageController" class="logo">PTIT Interior</a>
                 <nav>
                     <ul>
-                        <li><a href="${pageContext.request.contextPath}/HomePage.jsp">Trang chủ</a></li>
+                        <li><a href="${pageContext.request.contextPath}/HomePageController">Trang chủ</a></li>
                         <li><a href="${pageContext.request.contextPath}/ProductsController">Sản phẩm</a></li>
                         <li><a href="${pageContext.request.contextPath}/cart">Giỏ hàng</a></li>
                         <li><a href="${pageContext.request.contextPath}/Description.jsp">Mô tả</a></li>
